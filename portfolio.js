@@ -98,20 +98,35 @@ const btnText = document.getElementById('btnText');
 const btnIcon = document.getElementById('btnIcon');
 const submitBtn = document.getElementById('submitBtn');
 
-form && form.addEventListener('submit', e => {
+form && form.addEventListener('submit', async e => {
   e.preventDefault();
+  const data = new FormData(form);
+  
   submitBtn.disabled = true;
   btnText.textContent = 'Sending…';
   btnIcon && (btnIcon.style.animation = 'spin .6s linear infinite');
 
-  setTimeout(() => {
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    
+    if (response.ok) {
+      successMsg && successMsg.classList.add('show');
+      form.reset();
+      setTimeout(() => successMsg && successMsg.classList.remove('show'), 5000);
+    } else {
+      alert('Oops! There was a problem submitting your form. Please try again.');
+    }
+  } catch (error) {
+    alert('Oops! Network error. Please check your connection and try again.');
+  } finally {
     submitBtn.disabled = false;
     btnText.textContent = 'Send Message';
     btnIcon && (btnIcon.style.animation = '');
-    successMsg && successMsg.classList.add('show');
-    form.reset();
-    setTimeout(() => successMsg && successMsg.classList.remove('show'), 4500);
-  }, 1600);
+  }
 });
 
 /* ---------- Particles (Hero) ---------- */
