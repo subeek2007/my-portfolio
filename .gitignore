@@ -1,0 +1,17 @@
+# System Files
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+.npm
+package-lock.json
+
+# Local Config
+.env
+*.local
+
+# IDE Files
+.vscode/
+.idea/
+.gemini/

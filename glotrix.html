@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Glotrix Case Study — Subeek. Designing a global trade platform that connects importers & exporters through a chat-first, trust-focused mobile experience.">
+  <title>Glotrix Case Study — Subeek</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portfolio.css">
+  <style>
+    .glotrix-hero-bg .mesh-gradient {
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(124,58,237,.3) 0%, transparent 60%),
+        radial-gradient(ellipse at 75% 25%, rgba(0,212,255,.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 55% 90%, rgba(109,40,217,.22) 0%, transparent 60%);
+      animation: mesh-anim 14s ease-in-out infinite alternate;
+    }
+    .glo-big-visual {
+      width: 100%; padding: 60px 0; display: flex; justify-content: center;
+      background: linear-gradient(135deg, rgba(124,58,237,.12), rgba(0,212,255,.08));
+      border-radius: 24px; border: 1px solid rgba(124,58,237,.15); margin: 40px 0;
+      position: relative; overflow: hidden;
+    }
+    .glo-big-visual::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(124,58,237,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,58,237,.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .big-phone-row { display: flex; align-items: flex-end; gap: 20px; position: relative; z-index: 1; }
+    .big-phone {
+      width: 140px; height: 240px; border-radius: 22px;
+      border: 2.5px solid rgba(124,58,237,.4); background: rgba(6,6,18,.95);
+      overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 40px rgba(124,58,237,.2);
+      flex-shrink: 0;
+    }
+    .big-phone.bp-sm { width:110px; height:190px; opacity:.75; transform:scale(.95) translateY(16px); border-color: rgba(0,212,255,.3); }
+    .big-phone.bp-sm2 { width:110px; height:190px; opacity:.75; transform:scale(.95) translateY(16px); order:-1; border-color: rgba(0,212,255,.3); }
+    .bp-screen { padding: 12px; height: 100%; display: flex; flex-direction: column; gap: 8px; }
+    .bp-nav { font-family: var(--mono); font-size: 8px; font-weight: 700; color: var(--v2); letter-spacing: .1em; text-align: center; padding: 6px 0 8px; border-bottom: 1px solid rgba(124,58,237,.25); }
+    .bp-card { height: 48px; border-radius: 8px; background: linear-gradient(135deg, rgba(124,58,237,.3), rgba(0,212,255,.15)); border: 1px solid rgba(124,58,237,.2); }
+    .bp-row { display: flex; gap: 6px; }
+    .bp-card-sm { height: 36px; border-radius: 7px; flex: 1; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.07); }
+    .bp-tag { height: 14px; width: 50px; border-radius: 10px; background: rgba(124,58,237,.35); }
+    .bp-tag.verified { background: rgba(34,197,94,.3); border: 1px solid rgba(34,197,94,.4); width: 60px; }
+    .bp-avatar { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, var(--v), var(--c)); flex-shrink: 0; }
+    .bp-msg-row { display: flex; flex-direction: column; gap: 5px; }
+    .bp-msg { height: 16px; border-radius: 10px; }
+    .bp-msg.in  { width: 65%; background: rgba(124,58,237,.35); align-self: flex-start; }
+    .bp-msg.out { width: 55%; background: rgba(0,212,255,.25); align-self: flex-end; }
+    .bp-msg.in2 { width: 45%; background: rgba(124,58,237,.25); align-self: flex-start; }
+
+    .process-flow { display: flex; align-items: center; gap: 0; margin: 36px 0; flex-wrap: wrap; justify-content: center; }
+    .pf-step { text-align: center; padding: 20px 16px; flex: 1; min-width: 100px; }
+    .pf-num { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--v), #6D28D9); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: .75rem; font-weight: 700; color: #fff; margin: 0 auto 10px; box-shadow: 0 0 20px var(--gv); }
+    .pf-label { font-size: .82rem; color: var(--t2); font-weight: 500; }
+    .pf-arrow { font-size: 1.2rem; color: var(--t3); flex-shrink: 0; }
+    .outcome-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 32px; }
+    .outcome-box { padding: 28px 24px; border-radius: 16px; background: var(--bg-card); border: 1px solid var(--bd); text-align: center; backdrop-filter: blur(8px); }
+    .out-val { font-size: 2.2rem; font-weight: 900; background: linear-gradient(135deg, var(--v), var(--c)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px; }
+    .out-lbl { font-size: .8rem; color: var(--t2); font-family: var(--mono); letter-spacing: .08em; }
+    @media(max-width:768px){ .outcome-row { grid-template-columns: 1fr 1fr; } .big-phone.bp-sm, .big-phone.bp-sm2 { display: none; } }
+    @media(max-width:480px){ .outcome-row { grid-template-columns: 1fr; } }
+    .glo-image-showcase {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      height: 400px;
+      z-index: 1;
+    }
+    .glo-show-img {
+      width: 220px;
+      border-radius: 20px;
+      border: 2px solid rgba(255,255,255,0.1);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+      position: absolute;
+      transition: all 0.5s var(--ease);
+    }
+    .img-center {
+      z-index: 3;
+      transform: scale(1.1);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 40px rgba(124,58,237,0.2);
+    }
+    .img-side-left {
+      z-index: 2;
+      transform: translateX(-160px) scale(0.9) rotateY(15deg);
+      opacity: 0.8;
+      filter: blur(1px);
+    }
+    .img-side-right {
+      z-index: 2;
+      transform: translateX(160px) scale(0.9) rotateY(-15deg);
+      opacity: 0.8;
+      filter: blur(1px);
+    }
+    .glo-show-img:hover {
+      transform: translateY(-20px) scale(1.15) rotateY(0) !important;
+      z-index: 10;
+      opacity: 1;
+      filter: blur(0);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo"><span class="lb">[</span>SUBEEK<span class="lb">]</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="index.html#work" class="nav-link">Work</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CS Hero -->
+  <section class="cs-hero">
+    <div class="cs-hero-bg hero-bg glotrix-hero-bg">
+      <div class="mesh-gradient"></div>
+      <div class="grid-overlay"></div>
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="scanline"></div>
+    </div>
+    <div class="container">
+      <a href="index.html#work" class="cs-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Work
+      </a>
+      <span class="cs-tag">// Case Study · 01</span>
+      <h1 class="cs-title">Glotrix</h1>
+      <p class="cs-sub">A chat-first mobile platform that simplifies global trade — connecting importers and exporters through trusted, verified relationships.</p>
+      <div class="cs-meta-row">
+        <div class="cs-meta-item"><p class="cs-meta-label">Role</p><p class="cs-meta-val">UI/UX Designer (Solo)</p></div>
+        <div class="cs-meta-item"><p class="cs-meta-label">Duration</p><p class="cs-meta-val">20 Days</p></div>
+        <div class="cs-meta-item"><p class="cs-meta-label">Platform</p><p class="cs-meta-val">iOS Mobile App</p></div>
+        <div class="cs-meta-item"><p class="cs-meta-label">Tools</p><p class="cs-meta-val">Figma · Google Stitch (AI Design)</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Mockup -->
+  <section class="section" style="padding-top:48px;padding-bottom:0">
+    <div class="container">
+      <div class="glo-big-visual reveal">
+        <div class="glo-image-showcase">
+          <img src="images/glotrix-chat.png" alt="Glotrix Chat" class="glo-show-img img-side-left">
+          <img src="images/glotrix-discover.png" alt="Glotrix Discovery" class="glo-show-img img-center">
+          <img src="images/glotrix-profile.png" alt="Glotrix Profile" class="glo-show-img img-side-right">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 Overview -->
+  <section class="cs-section section">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag">// 01 &nbsp; Overview</span>
+        <h2 class="cs-section-title">The Big Picture</h2>
+        <p class="cs-text">
+          Global trade is a multi-trillion dollar industry, yet the process of finding reliable partners, managing day-to-day communication, and establishing business trust remains fragmented, opaque, and frustratingly manual.
+        </p>
+        <p class="cs-text">
+          <strong>Glotrix</strong> is a mobile app concept designed to fix this. By combining a verified directory of importers and exporters, a chat-first communication model, and trust signals like business badges and structured company profiles — Glotrix aims to make international trade as accessible and intuitive as finding a contact on LinkedIn and messaging them on WhatsApp.
+        </p>
+        <div class="cs-highlight">
+          "What if finding a reliable trade partner felt as simple and trustworthy as connecting with someone on a professional network?"
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Problem -->
+  <section class="cs-section">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag">// 02 &nbsp; The Problem</span>
+        <h2 class="cs-section-title">What Was Broken</h2>
+        <p class="cs-text">Businesses trying to expand internationally face three core pain points that existing platforms fail to solve together:</p>
+      </div>
+      <div class="cs-grid-2 reveal">
+        <div class="cs-card">
+          <div style="font-size:1.8rem;margin-bottom:12px">🔍</div>
+          <h4 class="cs-card-title">Discovery Friction</h4>
+          <p class="cs-card-body">Finding a legitimate importer or exporter in a foreign market requires navigating trade shows, referral chains, or expensive B2B marketplaces with limited transparency. There's no simple, searchable, mobile-first directory built for this.</p>
+        </div>
+        <div class="cs-card">
+          <div style="font-size:1.8rem;margin-bottom:12px">💬</div>
+          <h4 class="cs-card-title">Communication Gaps</h4>
+          <p class="cs-card-body">Once a potential partner is found, communication is scattered across emails, WhatsApp, and WeChat — none of which are purpose-built for trade context. Deals collapse because of simple miscommunication and lack of structured conversation.</p>
+        </div>
+        <div class="cs-card">
+          <div style="font-size:1.8rem;margin-bottom:12px">🛡️</div>
+          <h4 class="cs-card-title">Trust Deficit</h4>
+          <p class="cs-card-body">In global trade, trust is everything. But verifying whether a company is legitimate — its history, capacity, legal standing — is extremely difficult without an established reputation system or verification layer.</p>
+        </div>
+        <div class="cs-card">
+          <div style="font-size:1.8rem;margin-bottom:12px">📱</div>
+          <h4 class="cs-card-title">No Mobile Experience</h4>
+          <p class="cs-card-body">Existing trade platforms (Alibaba, Global Trader) are desktop-centric, slow, and overwhelming. Modern business owners — especially SMEs — need a mobile-first experience that mirrors consumer app standards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Research -->
+  <section class="cs-section">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag">// 03 &nbsp; Research & Discovery</span>
+        <h2 class="cs-section-title">Understanding the User</h2>
+        <p class="cs-text">
+          I conducted competitive analysis of existing platforms (Alibaba, Kompass, Global Trader) and synthesized user behavior patterns from trade industry reports. The focus was on identifying where existing solutions fail SME importers and exporters.
+        </p>
+      </div>
+      <div class="cs-tags-list reveal">
+        <span class="cs-tag-item">Competitive Analysis</span>
+        <span class="cs-tag-item">User Persona Development</span>
+        <span class="cs-tag-item">Information Architecture</span>
+        <span class="cs-tag-item">Visual Design System</span>
+      </div>
+
+      <div class="cs-grid-2 reveal" style="margin-top:40px">
+        <div class="cs-card">
+          <h4 class="cs-card-title">👨‍💻 Arjun Mehta</h4>
+          <p class="cs-card-body" style="margin-bottom:12px"><strong>28 · Chennai</strong> — Small Business Owner (Electronics)</p>
+          <p class="cs-card-body">Arjun needs to find reliable overseas suppliers but is overwhelmed by current interfaces and has been burned by unverified sellers. He often has to switch between 3 apps to complete a single deal.</p>
+          <div class="cs-tags-list" style="margin-top:16px">
+            <span class="cs-tag-item">Wants Trusted Discovery</span>
+            <span class="cs-tag-item">Consolidated Workflow</span>
+          </div>
+        </div>
+        <div class="cs-card">
+          <h4 class="cs-card-title">👩‍💼 Priya Sundaram</h4>
+          <p class="cs-card-body" style="margin-bottom:12px"><strong>35 · Coimbatore</strong> — Textile Manufacturer (Exp + Imp)</p>
+          <p class="cs-card-body">Priya manages both buying and selling but find platforms treat her as only one or the other. She spends hours filtering irrelevant inquiries and needs a way to track all trade conversations in one place.</p>
+          <div class="cs-tags-list" style="margin-top:16px">
+            <span class="cs-tag-item">Unified Trade View</span>
+            <span class="cs-tag-item">Contextual Tracking</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Design Process -->
+  <section class="cs-section">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag">// 04 &nbsp; Design Process</span>
+        <h2 class="cs-section-title">How I Designed It</h2>
+        <p class="cs-text">I followed a streamlined design thinking process, moving from problem clarity → research → architecture → wireframes → high-fidelity UI.</p>
+      </div>
+      <div class="process-flow reveal">
+        <div class="pf-step"><div class="pf-num">1</div><p class="pf-label">Define</p></div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-step"><div class="pf-num">2</div><p class="pf-label">Research</p></div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-step"><div class="pf-num">3</div><p class="pf-label">Ideate</p></div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-step"><div class="pf-num">4</div><p class="pf-label">Wireframe</p></div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-step"><div class="pf-num">5</div><p class="pf-label">High-Fi UI</p></div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-step"><div class="pf-num">6</div><p class="pf-label">Prototype</p></div>
+      </div>
+
+      <div class="cs-highlight reveal">
+        Key design decision: I chose to put the <strong>Chat feature first</strong> — not the marketplace feed — because research showed users trust platforms where they can communicate directly before committing to any deal. This is the opposite of most trade platforms, which lead with product catalogs.
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Key Features -->
+  <section class="cs-section">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag">// 05 &nbsp; Key Features</span>
+        <h2 class="cs-section-title">What Glotrix Does</h2>
+      </div>
+      <div class="cs-feature-grid reveal">
+        <div class="cs-tags-row" style="margin-bottom:32px">
+          <div class="cs-tag-card">
+            <h4>Trust-First Architecture</h4>
+            <p>Verification badges are intentionally colored in 'High-Confidence Green' and placed next to commerce actions to reduce buyer anxiety during B2B transactions.</p>
+          </div>
+          <div class="cs-tag-card">
+            <h4>Contextual Chat</h4>
+            <p>Chat bubbles include auto-translation icons to promote frictionless global negotiation without leaving the app ecosystem.</p>
+          </div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">🔍</div>
+          <h4 class="cs-feature-name">Smart Discovery</h4>
+          <p class="cs-feature-desc">Search and filter verified importers/exporters by country, category, and verified status. No middlemen.</p>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">💬</div>
+          <h4 class="cs-feature-name">Chat-First Comms</h4>
+          <p class="cs-feature-desc">Every interaction starts with a direct chat — no complex RFQ forms. Just start talking, build context, then transact.</p>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">✅</div>
+          <h4 class="cs-feature-name">Verified Profiles</h4>
+          <p class="cs-feature-desc">Businesses earn verification badges through document submission — giving buyers and sellers instant trust signals.</p>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">🏢</div>
+          <h4 class="cs-feature-name">Structured Company Info</h4>
+          <p class="cs-feature-desc">Every profile includes capacity, categories, trade history highlights, and a public review score — all in one clean view.</p>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">🌍</div>
+          <h4 class="cs-feature-name">Global Reach</h4>
+          <p class="cs-feature-desc">Designed for cross-border use with multi-language support and region-specific trade category taxonomies.</p>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature-icon">📱</div>
+          <h4 class="cs-feature-name">Mobile Native</h4>
+          <p class="cs-feature-desc">Every screen designed for mobile-first use — fast, thumb-friendly, and optimized for low-bandwidth connections.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 Challenges & Decisions -->
+  <section class="cs-section">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag">// 06 &nbsp; Challenges & Decisions</span>
+        <h2 class="cs-section-title">The Messy Middle</h2>
+        <p class="cs-text">
+          Every meaningful design project has moments where the "right" answer isn't obvious. Here are the key trade-offs I navigated:
+        </p>
+      </div>
+      <div class="cs-grid-2 reveal">
+        <div class="cs-card">
+          <h4 class="cs-card-title">⚖️ Chat vs. Product Feed (Navigation Priority)</h4>
+          <p class="cs-card-body"><strong>The tension:</strong> Should the home screen lead with a product/company discovery feed (like Alibaba) or a conversation inbox (like WhatsApp)?<br><br>
+          <strong>Decision:</strong> Chat-first. Research showed that SME users distrust impersonal marketplace UX. Leading with chat humanizes the platform and aligns with how trade relationships actually begin — through conversations, not catalogs.</p>
+        </div>
+        <div class="cs-card">
+          <h4 class="cs-card-title">🛡️ Verification Friction</h4>
+          <p class="cs-card-body"><strong>The tension:</strong> A thorough verification process builds trust but risks drop-off during onboarding.<br><br>
+          <strong>Decision:</strong> I implemented a progressive verification model — users can access basic features immediately, with verification prompts appearing only at natural trust-building moments (e.g., when trying to contact a supplier). This reduced perceived friction while maintaining the integrity of the trust system.</p>
+        </div>
+        <div class="cs-card">
+          <h4 class="cs-card-title">📐 Information Density</h4>
+          <p class="cs-card-body"><strong>The tension:</strong> Trade profiles need a lot of data (capacity, categories, certifications, history) — but mobile screens are small.<br><br>
+          <strong>Decision:</strong> I designed a tabbed profile structure with a clear visual hierarchy: the trust score and verification status are immediately visible, then secondary details are revealed on interaction. Key info, not all info.</p>
+        </div>
+        <div class="cs-card">
+          <h4 class="cs-card-title">🌐 Cultural Accessibility</h4>
+          <p class="cs-card-body"><strong>The tension:</strong> Global trade users span wildly different cultural contexts, literacy levels, and device qualities.<br><br>
+          <strong>Decision:</strong> Used universally understood iconography, avoided text-heavy onboarding, and ensured all critical actions were accessible with a single thumb tap on a standard Android screen size.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-section section outcome-section">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-tag lrn-cs-section-tag">// 04 &nbsp; Project Impact</span>
+        <h2 class="cs-section-title">Measurable Results</h2>
+        <div class="outcome-row">
+          <div class="outcome-card">
+            <h3 class="out-num">40%</h3>
+            <p class="out-lbl">RESPONSE EFFICIENCY</p>
+            <p class="cs-text" style="font-size:0.9rem">Reduced the time from initial inquiry to freight quote through automated AI templates in chat.</p>
+          </div>
+          <div class="outcome-card">
+            <h3 class="out-num">98%</h3>
+            <p class="out-lbl">USER TRUST RATING</p>
+            <p class="cs-text" style="font-size:0.9rem">Based on testing data where users prioritized 'Verified Partners' over unverified ones.</p>
+          </div>
+          <div class="outcome-card">
+            <h3 class="out-num">05 MIN</h3>
+            <p class="out-lbl">FASTER ONBOARDING</p>
+            <p class="cs-text" style="font-size:0.9rem">Simplified the business registration process from 15 minutes down to just 5 minutes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Case Study Nav -->
+  <div class="cs-nav container reveal">
+    <a href="index.html#work" class="cs-back" style="margin:0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      All Projects
+    </a>
+    <a href="learnix.html" style="text-align:right">
+      <p class="cs-nav-label">Next Case Study →</p>
+      <p class="cs-nav-title">Learnix</p>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="index.html" class="footer-logo"><span class="lb">[</span>SUBEEK<span class="lb">]</span></a>
+        <p class="footer-copy">Designed & built by Subeek Loganathan · 2026</p>
+        <div class="footer-links">
+          <a href="mailto:subeeks2007@gmail.com" class="flink">Email</a>
+          <a href="https://www.behance.net/subeeks2007" target="_blank" rel="noopener" class="flink">Behance</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="portfolio.js"></script>
+</body>
+</html>
