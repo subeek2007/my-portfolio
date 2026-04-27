@@ -177,9 +177,6 @@ document.querySelectorAll('.pcard').forEach(card => {
   });
 });
 
-/* ---------- Resume Download Alert ---------- */
-const resumeBtn = document.getElementById('resumeBtn');
-resumeBtn && resumeBtn.addEventListener('click', e => {
-  e.preventDefault();
-  alert('Resume PDF will be available soon! Contact me at subeeks2007@gmail.com');
-});
+
+/* ---------- Resume Button Scroll (Optional) ---------- */
+// No blocking script for resumeBtn anymore to allow navigation to resume.html

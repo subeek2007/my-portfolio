@@ -12,7 +12,7 @@
       --text: #1a1a1a;
       --text-light: #52525B;
       --accent: #2563EB;
-      --border: #E4E4E7;
+      --border: #333;
     }
     * {
       box-sizing: border-box;
@@ -21,140 +21,133 @@
     }
     body {
       font-family: 'Inter', sans-serif;
-      background: #f4f4f5;
+      background: #f8fafc;
       color: var(--text);
-      line-height: 1.6;
-      padding: 40px 20px;
+      line-height: 1.5;
+      padding: 60px 20px;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+    .print-btn {
+      margin-bottom: 30px;
+      background: #000;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.2s;
+    }
+    .print-btn:hover {
+      background: #333;
+      transform: translateY(-2px);
     }
     .resume-sheet {
       background: #fff;
       width: 100%;
-      max-width: 850px;
-      padding: 64px 80px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      max-width: 800px;
+      padding: 60px 70px;
+      box-shadow: 0 0 50px rgba(0,0,0,0.05);
       border-radius: 4px;
     }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
     h1 {
-      font-size: 2.2rem;
+      font-size: 2.25rem;
       font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 4px;
-      color: #000;
+      margin-bottom: 8px;
     }
     .role {
-      font-size: 1.1rem;
+      font-size: 1.25rem;
       font-weight: 500;
-      color: var(--accent);
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
     .contact-info {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      font-size: 0.85rem;
-      color: var(--text-light);
-      margin-bottom: 32px;
+      font-size: 0.9rem;
+      color: var(--text);
     }
     .contact-info a {
-      color: var(--text-light);
-      text-decoration: none;
-    }
-    .contact-info .separator {
-      color: var(--border);
+      color: #2563EB;
+      text-decoration: underline;
     }
     
+    hr {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 24px 0;
+    }
+
     .section {
-      margin-bottom: 32px;
+      margin-bottom: 24px;
     }
     h2 {
-      font-size: 1.1rem;
+      font-size: 1.5rem;
       font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #000;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 8px;
+      text-align: center;
       margin-bottom: 16px;
     }
     
-    .summary {
+    .profile-text {
       font-size: 0.95rem;
       color: var(--text);
+      text-align: left;
     }
 
     .skills-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 24px;
+      gap: 30px;
     }
     .skill-category h3 {
-      font-size: 0.95rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
     .skill-category ul {
       list-style-type: none;
+      padding-left: 10px;
     }
     .skill-category li {
-      font-size: 0.85rem;
-      color: var(--text-light);
-      margin-bottom: 4px;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      position: relative;
+    }
+    .skill-category li::before {
+      content: "•";
+      position: absolute;
+      left: -12px;
     }
 
     .project {
       margin-bottom: 24px;
     }
-    .project:last-child {
-      margin-bottom: 0;
-    }
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 8px;
-    }
     .project-title {
-      font-size: 1.05rem;
+      font-size: 1.15rem;
       font-weight: 600;
-    }
-    .project-role {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text-light);
-      font-style: italic;
+      margin-bottom: 10px;
     }
     .project-bullets {
       padding-left: 18px;
     }
     .project-bullets li {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       margin-bottom: 6px;
-      color: var(--text);
     }
 
     .education-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
+      padding-left: 18px;
     }
-    .edu-left strong {
-      display: block;
-      font-size: 1rem;
-      font-weight: 600;
-    }
-    .edu-left span {
-      font-size: 0.9rem;
-      color: var(--text-light);
-    }
-    .edu-right {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text-light);
+    .education-item li {
+      font-size: 0.95rem;
+      margin-bottom: 4px;
     }
 
-    /* Print Styles */
     @media print {
       body {
         background: none;
@@ -162,7 +155,7 @@
       }
       .resume-sheet {
         box-shadow: none;
-        padding: 0;
+        padding: 40px;
         max-width: 100%;
       }
       .no-print {
@@ -170,77 +163,64 @@
       }
     }
 
-    .print-btn {
-      position: fixed;
-      bottom: 40px;
-      right: 40px;
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 100px;
-      font-family: inherit;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-      transition: all 0.2s;
-    }
-    .print-btn:hover {
-      background: #1D4ED8;
-      transform: translateY(-2px);
+    @media (max-width: 600px) {
+      .resume-sheet {
+        padding: 40px 20px;
+      }
+      .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <button class="print-btn no-print" onclick="window.print()">Download / Print PDF</button>
+  <button class="print-btn no-print" onclick="window.print()">Download PDF</button>
 
   <div class="resume-sheet">
     <!-- Header -->
     <header>
       <h1>Subeek</h1>
-      <div class="role">UI/UX Designer</div>
+      <div class="role">UXUI Designer</div>
       <div class="contact-info">
-        <span>Namakkal, India</span>
-        <span class="separator">|</span>
-        <a href="tel:+918056669779">+91 8056669779</a>
-        <span class="separator">|</span>
-        <a href="mailto:subeeks2007@gmail.com">subeeks2007@gmail.com</a>
-        <span class="separator">|</span>
-        <a href="https://behance.net/subeeks2007" target="_blank" rel="noopener">behance.net/subeeks2007</a>
+        Namakkal | +91 8056669779 | subeeks2007@gmail.com | 
+        <a href="https://behance.net/shared-links" target="_blank">Behance</a> | 
+        <a href="index.html">Portfolio</a>
       </div>
     </header>
 
-    <!-- Professional Summary -->
+    <hr>
+
+    <!-- Profile -->
     <section class="section">
-      <h2>Professional Summary</h2>
-      <p class="summary">
-        Detail-oriented UI/UX Designer specializing in building scalable design systems, end-to-end product strategy, and user-centric problem solving. Proven ability to translate complex conceptual problems into intuitive, high-fidelity interfaces that reduce cognitive load and drive user engagement. Adept at bridging the gap between business objectives and user needs through rigorous research, rapid prototyping, and interaction design.
+      <h2>Profile</h2>
+      <p class="profile-text">
+        Results-driven UX/UI Designer with hands-on experience crafting intuitive, user-centered digital products from research through high-fidelity delivery. Skilled in end-to-end design — from user research and information architecture to wireframing, prototyping, and scalable design systems. Demonstrated ability to translate complex user pain points into clean, functional interfaces. Seeking international opportunities to contribute to impactful product teams.
       </p>
     </section>
 
+    <hr>
+
     <!-- Skills -->
     <section class="section">
-      <h2>Core Competencies</h2>
+      <h2>Skills</h2>
       <div class="skills-grid">
         <div class="skill-category">
           <h3>Design</h3>
           <ul>
-            <li>High-Fidelity UI Design</li>
             <li>Wireframing & Prototyping</li>
             <li>Interaction Design</li>
-            <li>Design Systems</li>
-            <li>Micro-interactions</li>
+            <li>High-Fidelity UI Design</li>
+            <li>Design Systems & Micro-interactions</li>
           </ul>
         </div>
         <div class="skill-category">
-          <h3>Research & Strategy</h3>
+          <h3>Research</h3>
           <ul>
             <li>User Research</li>
             <li>Usability Testing</li>
             <li>Information Architecture</li>
-            <li>User Flows & Journey Mapping</li>
-            <li>Competitive Analysis</li>
           </ul>
         </div>
         <div class="skill-category">
@@ -249,54 +229,49 @@
             <li>Figma</li>
             <li>Adobe Illustrator</li>
             <li>Adobe Photoshop</li>
-            <li>HTML & CSS</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Experience / Projects -->
+    <hr>
+
+    <!-- Projects -->
     <section class="section">
-      <h2>Selected Project Experience</h2>
+      <h2>Projects</h2>
       
       <div class="project">
-        <div class="project-header">
-          <div class="project-title">Learnix — Personalized EdTech Platform</div>
-          <div class="project-role">UX Case Study</div>
-        </div>
+        <h3 class="project-title">Learnix – UX Case Study</h3>
         <ul class="project-bullets">
-          <li>Engineered a mobile-first learning ecosystem to solve fragmented personalized learning, streamlining progress tracking and content discovery.</li>
-          <li>Spearheaded end-to-end UX research to identify key user pain points, directly influencing the organizational architecture.</li>
-          <li>Crafted comprehensive wireframes, advanced micro-interactions, and high-fidelity prototypes in Figma to significantly reduce user cognitive load.</li>
-          <li>Designed a cohesive, scalable UI system that elevated navigation clarity and enriched overall student engagement.</li>
+          <li>Designed a mobile-first learning app to address the lack of personalized learning experiences for students</li>
+          <li>Conducted user research to identify pain points in progress tracking and content discovery</li>
+          <li>Developed wireframes and high-fidelity prototypes in Figma to improve navigation clarity and usability</li>
+          <li>Created structured user flows and micro-interactions to enhance engagement and reduce cognitive load</li>
         </ul>
       </div>
 
       <div class="project">
-        <div class="project-header">
-          <div class="project-title">Glotrix — B2B Global Trade Platform</div>
-          <div class="project-role">UX Case Study</div>
-        </div>
+        <h3 class="project-title">Glotrix – UX Case Study</h3>
         <ul class="project-bullets">
-          <li>Architected the user experience for a B2B platform addressing critical industry gaps in algorithmic discovery, communication, and verified trust.</li>
-          <li>Mapped complex, multi-sided user flows seamlessly connecting importers and exporters, accelerating onboarding and partner matching workflows.</li>
-          <li>Developed a robust design system and a clean, minimalist interface to ensure cross-platform usability and support scalable future development.</li>
+          <li>Identified UX issues in global trade platforms (trust, discovery, communication)</li>
+          <li>Designed end-to-end user flows for connecting importers and exporters</li>
+          <li>Created clean, minimal UI to improve usability and clarity</li>
+          <li>Built a consistent design system in Figma</li>
         </ul>
       </div>
     </section>
 
+    <hr>
+
     <!-- Education -->
     <section class="section">
       <h2>Education</h2>
-      <div class="education-item">
-        <div class="edu-left">
-          <strong>B.Tech in Artificial Intelligence & Data Science</strong>
-          <span>Ramco Institute of Technology (Autonomous Institution, Affiliated to Anna University)</span>
-        </div>
-        <div class="edu-right">
-          2024 — 2028 (Expected)
-        </div>
-      </div>
+      <ul class="education-item">
+        <li>B.Tech – Artificial Intelligence & Data Science</li>
+        <li>Ramco Institute of Technology</li>
+        <li>Autonomous Institution (Affiliated to Anna University)</li>
+        <li>2024 – 2028 (Expected)</li>
+      </ul>
     </section>
 
   </div>

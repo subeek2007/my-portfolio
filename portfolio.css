@@ -146,6 +146,11 @@ ul { list-style: none; }
 }
 .btn-outline-sm:hover { background: var(--v); color: #fff; border-color: var(--v); box-shadow: 0 4px 20px var(--gv); }
 .btn-full { width: 100%; justify-content: center; padding: 14px 22px; }
+.btn-primary-sm {
+  padding: 8px 16px; border-radius: 6px; font-size: .8125rem; font-weight: 600;
+  background: linear-gradient(135deg, var(--v), #6D28D9); color: #fff; box-shadow: 0 4px 14px var(--gv);
+}
+.btn-primary-sm:hover { transform: translateY(-2px); box-shadow: 0 6px 18px var(--gv); }
 
 /* Hamburger */
 .hamburger { display: none; flex-direction: column; gap: 5px; align-items: center; justify-content: center; width: 36px; height: 36px; }
@@ -364,6 +369,12 @@ ul { list-style: none; }
   font-size: .78rem; color: var(--t2); font-weight: 500; transition: all .2s;
 }
 .stag:hover { background: rgba(124,58,237,.2); color: var(--v2); border-color: rgba(124,58,237,.4); }
+
+/* Education Preview */
+.edu-preview { display: flex; flex-direction: column; gap: 4px; }
+.edu-degree { font-size: .95rem; font-weight: 700; color: var(--t1); }
+.edu-inst { font-size: .85rem; color: var(--t2); }
+.edu-year { font-size: .75rem; font-family: var(--mono); color: var(--v2); margin-top: 4px; }
 
 /* ---- WORK SECTION ---- */
 .work { background: var(--bg2); position: relative; overflow: hidden; }
